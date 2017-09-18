@@ -1,0 +1,30 @@
+{
+  "name": "armabot",
+  "version": "0.1.0",
+  "description": "Discord ArmA3 Stats Bot",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^11.2.0",
+    "gamedig": "^1.0.37"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://www.github.com/nrpatten/ArmaBot.git"
+  },
+  "author": "Nathan Patten",
+  "license": "MIT",
+  "bugs": {
+    "url": "http://www.github.com/nrpatten/ArmaBot/issues"
+  },
+  "homepage": "http://www.github.com/nrpatten/ArmaBot",
+  "keywords": [
+    "arma",
+    "discord",
+	"stats"
+  ]
+}
