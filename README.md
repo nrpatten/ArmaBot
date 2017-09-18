@@ -1,7 +1,7 @@
 # A Node.js Discord ArmA 3 Stats Bot!
 -------------
 
-Setup:
+### Setup:
 
 * Edit index.js
  * Add your `clientID` to line 4
@@ -14,3 +14,9 @@ Setup:
 
 Done..
 
+### Bot Commands
+
+* !info for server info
+* !Players for a list of online players
+* !stats for info/players
+* !search for other server stats expample: `!search 45.121.211.65 2302`
