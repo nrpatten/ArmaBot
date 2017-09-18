@@ -1,0 +1,16 @@
+# A Node.js Discord ArmA 3 Stats Bot!
+-------------
+
+Setup:
+
+* Edit index.js
+ * Add your `clientID` to line 4
+ * Add your server ip to `YorServerIP` on line 7
+ * Add your server port to `YorServerPort` on line 8
+
+`npm install`
+
+`npm start` or `node index.js`
+
+Done..
+
