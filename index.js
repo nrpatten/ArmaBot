@@ -85,7 +85,6 @@ client.on('message', message => {
         message.channel.send('```' + 'Server Name: ' + data.name + '\n' + 'Map: ' + data.map + '\n' + 'players online: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + 'Server Ip/Port: ' + data.query.host + ':' + data.query.port + '```');
         var player = data.players;
         for (var i in player) {
-          console.log(player[i].time);
           message.channel.send('```' + player[i].name + ' - Score: ' + player[i].score + ' - Time In Game: ' + timeFormat(player[i].time) + '```');
         }
       }
