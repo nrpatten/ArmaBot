@@ -11,23 +11,20 @@ client.on('ready', () => {
   console.log(`ArmaBot has started, with ${client.users.size} users, and ${client.channels.size} channels.`)
 });
 
-function formatTime(nbSeconds, hasHours) {
-    var time = [],
-    s = 1;
-    var calc = nbSeconds;
-    if (hasHours) {
-      s = 3600;
-      calc = calc / s;
-      time.push(format(Math.floor(calc)));
-    }
-    calc = ((calc - (time[time.length-1] || 0)) * s) / 60;
-    time.push(format(Math.floor(calc)));
-    calc = (calc - (time[time.length-1])) * 60;
-    time.push(format(Math.round(calc)));
-    function format(n) {
-      return (("" + n) / 10).toFixed(1).replace(".", "");
-    }
-    return time.join(" Mins and ");
+function timeFormat(time) {   
+  var hrs = ~~(time / 3600);
+  var mins = ~~((time % 3600) / 60);
+  var secs = Math.round(time % 60);
+  var ret = "";
+  if (hrs > 1) {
+    ret += "" + hrs + " Hrs " + (mins < 10 ? "0" : "");
+  } else
+  if (hrs > 0) {
+    ret += "" + hrs + " Hr " + (mins < 10 ? "0" : "");
+  }
+  ret += "" + mins + " Mins " + (secs < 10 ? "0" : "");
+  ret += "" + secs + " Secs";
+  return ret;
 };
 
 client.on('message', message => {
@@ -69,7 +66,7 @@ client.on('message', message => {
         } else
           message.channel.send('```' + 'Number of players online: ' + data.raw.numplayers + '/' + data.maxplayers + '```');
         for (var i in player) {
-          message.channel.send('```' + player[i].name + ' - Score: ' + player[i].score + ' - Time In Game: ' + formatTime(player[i].time) + ' Secs' + '```');
+          message.channel.send('```' + player[i].name + ' - Score: ' + player[i].score + ' - Time In Game: ' + timeFormat(player[i].time) + '```');
         }
       }
     });
@@ -88,7 +85,8 @@ client.on('message', message => {
         message.channel.send('```' + 'Server Name: ' + data.name + '\n' + 'Map: ' + data.map + '\n' + 'players online: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + 'Server Ip/Port: ' + data.query.host + ':' + data.query.port + '```');
         var player = data.players;
         for (var i in player) {
-          message.channel.send('```' + player[i].name + ' - Score: ' + player[i].score + ' - Time In Game: ' + formatTime(player[i].time) + ' Secs' + '```');
+          console.log(player[i].time);
+          message.channel.send('```' + player[i].name + ' - Score: ' + player[i].score + ' - Time In Game: ' + timeFormat(player[i].time) + '```');
         }
       }
     });
@@ -96,13 +94,13 @@ client.on('message', message => {
   
   if (command === "search") {
     var ip = args.slice(0, 1).join(' ').toUpperCase();
-	var p = args.slice(1, 2).join(' ').toUpperCase();
-	if ( !ip && !p || ip && p < 2 ) {
-	  message.channel.send('Error! make sure the servers ip and port are correct  \nPlease use example ' + '`!search 45.121.211.65 2302`');
-	} else
-	if ( !p.match(/^\d+$/) ) {
-	  message.channel.send('Error port is numeric only');
-	} else
+    var p = args.slice(1, 2).join(' ').toUpperCase();
+    if ( !ip && !p || ip && p < 2 ) {
+      message.channel.send('Error! make sure the servers ip and port are correct  \nPlease use example ' + '`!search 45.121.211.65 2302`');
+    } else
+    if ( !p.match(/^\d+$/) ) {
+      message.channel.send('Error port is numeric only');
+    } else
     Gamedig.query({
       type: game,
       host: ip,
@@ -114,8 +112,8 @@ client.on('message', message => {
       } else {
         message.channel.send('```' + 'Server Name: ' + data.name + '\n' + 'Map: ' + data.map + '\n' + 'players online: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + 'Server Ip/Port: ' + data.query.host + ':' + data.query.port + '```');
       }
-    });		
-  } 
+    });
+  }
 });
 
 client.login(clientID);
