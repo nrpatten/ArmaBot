@@ -1,5 +1,6 @@
 # A Node.js Discord ArmA 3 Stats Bot!
 -------------
+[![Known Vulnerabilities](https://snyk.io/test/github/nrpatten/armabot/badge.svg)](https://snyk.io/test/github/nrpatten/armabot)
 
 ### Setup:
 
