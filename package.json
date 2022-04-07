@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "discord.js": "^11.2.0",
-    "gamedig": "^1.0.37"
+    "gamedig": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {
